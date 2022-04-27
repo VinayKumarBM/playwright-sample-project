@@ -1,0 +1,24 @@
+import HomeSteps from "../advantage/steps/HomeSteps";
+import RegistrationSteps from "../advantage/steps/RegistrationSteps";
+import { test } from "../framework/config/base-test";
+import Allure from "../framework/reporter/Allure";
+import ExcelUtil from "../framework/utils/ExcelUtil";
+
+const sheet = "CreateAccountTest";
+const testData = ExcelUtil.getTestDataArray(sheet);
+// eslint-disable-next-line no-restricted-syntax
+for (const data of testData) {
+    test(`${data.TestID} - ${data.Description}`, async ({ page }) => {
+        Allure.attachDetails(data.Description, data.Issue);
+        const home = new HomeSteps(page);
+        await home.launchApplication();
+        await home.navigateToCreateAccount();
+        const register = new RegistrationSteps(page);
+        const userName = await register.createAccount(data.Email, data.Password,
+            data.ConfirmPassword, data.FirstName, data.LastName, data.PhoneNumber, data.Country,
+            data.City, data.Address, data.State, data.PostalCode, data.AllowOffersPromotion);
+        await register.saveRegistration();
+        await home.validateLogin(userName);
+        await home.logout();
+    });
+}

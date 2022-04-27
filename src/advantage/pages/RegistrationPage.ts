@@ -1,0 +1,19 @@
+export default class RegistrationPage {
+    static readonly USER_NAME_TEXTBOX = "[name='usernameRegisterPage']";
+    static readonly PASSWORD_TEXTBOX = "[name='passwordRegisterPage']";
+    static readonly EMAIL_TEXTBOX = "[name='emailRegisterPage']";
+    static readonly PASSWORD_CONFIRM_TEXTBOX = "[name='confirm_passwordRegisterPage']";
+    static readonly FIRST_NAME_TEXTBOX = "[name='first_nameRegisterPage']";
+    static readonly LAST_NAME_TEXTBOX = "[name='last_nameRegisterPage']";
+    static readonly PHONE_NUMBER_TEXTBOX = "[name='phone_numberRegisterPage']";
+    static readonly COUNTRY_DROPDOWN = "[name='countryListboxRegisterPage']";
+    static readonly CITY_TEXTBOX = "[name='cityRegisterPage']";
+    static readonly ADDRESS_TEXTBOX = "[name='addressRegisterPage']";
+    static readonly STATE_TEXTBOX = "[name='state_/_province_/_regionRegisterPage']";
+    static readonly POSTAL_CODE_TEXTBOX = "[name='postal_codeRegisterPage']";
+    static readonly PROMOTION_CHECKBOX = "[name='allowOffersPromotion']";
+    static readonly PRIVACY_POLICY_CHECKBOX = "[name='i_agree']";
+    static readonly REGISTER_BUTTON = "#register_btnundefined";
+    static readonly ALREADY_HAVE_AN_ACCOUNT_LINK = "[translate='ALREADY_HAVE_AN_ACCOUNT']";
+    static readonly MANDATORY_FIELD_ERROR_MESSAGE = "div.inputContainer>label.invalid";
+}
