@@ -1,10 +1,10 @@
 import test, { Page } from "@playwright/test";
-import UIActions from "../../framework/playwright/actions/UIActions";
-import Assert from "../../framework/playwright/asserts/Assert";
-import PDFUtil from "../../framework/utils/PDFUtil";
-import CommonConstants from "../constants/CommonConstants";
-import ConfigurationConstants from "../constants/ConfigurationConstants";
-import ConfigurationPage from "../pages/ConfigurationPage";
+import ConfigurationPage from "@pages/ConfigurationPage";
+import Assert from "@asserts/Assert";
+import UIActions from "@uiActions/UIActions";
+import PDFUtil from "@utils/PDFUtil";
+import CommonConstants from "@uiConstants/CommonConstants";
+import ConfigurationConstants from "@uiConstants/ConfigurationConstants";
 
 export default class ConfigurationSteps {
     private ui: UIActions;

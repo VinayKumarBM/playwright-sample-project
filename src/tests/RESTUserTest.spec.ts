@@ -1,8 +1,8 @@
-import UserSteps from "../API/REST/steps/UserSteps";
-import { test } from "../framework/config/base-test";
-import Allure from "../framework/reporter/Allure";
-import ExcelUtil from "../framework/utils/ExcelUtil";
-import StringUtil from "../framework/utils/StringUtil";
+import UserSteps from "@restSteps/UserSteps";
+import { test } from "@base-test";
+import Allure from "@allure";
+import ExcelUtil from "@utils/ExcelUtil";
+import StringUtil from "@utils/StringUtil";
 
 const SHEET = "RESTUserTest";
 let user: UserSteps;

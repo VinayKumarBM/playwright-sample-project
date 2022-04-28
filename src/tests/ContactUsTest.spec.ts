@@ -1,7 +1,7 @@
-import HomeSteps from "../advantage/steps/HomeSteps";
-import { test } from "../framework/config/base-test";
-import Allure from "../framework/reporter/Allure";
-import ExcelUtil from "../framework/utils/ExcelUtil";
+import ExcelUtil from "@utils/ExcelUtil";
+import { test } from "@base-test";
+import Allure from "@allure";
+import HomeSteps from "@uiSteps/HomeSteps";
 
 const testData = ExcelUtil.getTestDataArray("ContactUsTest");
 // eslint-disable-next-line no-restricted-syntax

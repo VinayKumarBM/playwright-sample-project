@@ -1,8 +1,8 @@
 import test, { Page } from "@playwright/test";
-import APIActions from "../../../framework/playwright/API/APIActions";
-import RESTResponse from "../../../framework/playwright/API/RESTResponse";
-import Assert from "../../../framework/playwright/asserts/Assert";
-import RESTConstants from "../constants/RESTConstants";
+import APIActions from "@apiActions/APIActions";
+import RESTResponse from "@apiActions/RESTResponse";
+import Assert from "@asserts/Assert";
+import RESTConstants from "@restConstants/RESTConstants";
 
 export default class UserSteps {
     private api: APIActions;

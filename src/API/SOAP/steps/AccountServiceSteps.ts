@@ -1,8 +1,8 @@
 import test, { Page } from "@playwright/test";
-import APIActions from "../../../framework/playwright/API/APIActions";
-import SOAPResponse from "../../../framework/playwright/API/SOAPResponse";
-import Assert from "../../../framework/playwright/asserts/Assert";
-import SOAPConstants from "../constants/SOAPConstants";
+import APIActions from "@apiActions/APIActions";
+import SOAPResponse from "@apiActions/SOAPResponse";
+import Assert from "@asserts/Assert";
+import SOAPConstants from "@soapConstants/SOAPConstants";
 
 export default class AccountServiceSteps {
     private api: APIActions;

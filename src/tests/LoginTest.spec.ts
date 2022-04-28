@@ -1,8 +1,8 @@
-import HomeSteps from "../advantage/steps/HomeSteps";
-import RegistrationSteps from "../advantage/steps/RegistrationSteps";
-import { test } from "../framework/config/base-test";
-import Allure from "../framework/reporter/Allure";
-import ExcelUtil from "../framework/utils/ExcelUtil";
+import HomeSteps from "@uiSteps/HomeSteps";
+import RegistrationSteps from "@uiSteps/RegistrationSteps";
+import { test } from "@base-test";
+import Allure from "@allure";
+import ExcelUtil from "@utils/ExcelUtil";
 
 const SHEET = "LoginTest";
 let home: HomeSteps;

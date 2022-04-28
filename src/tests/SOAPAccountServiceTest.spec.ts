@@ -1,8 +1,8 @@
-import AccountServiceSteps from "../API/SOAP/steps/AccountServiceSteps";
-import { test } from "../framework/config/base-test";
-import Allure from "../framework/reporter/Allure";
-import ExcelUtil from "../framework/utils/ExcelUtil";
-import StringUtil from "../framework/utils/StringUtil";
+import AccountServiceSteps from "@soapSteps/AccountServiceSteps";
+import { test } from "@base-test";
+import Allure from "@allure";
+import ExcelUtil from "@utils/ExcelUtil";
+import StringUtil from "@utils/StringUtil";
 
 const SHEET = "SOAPAccountServiceTest";
 let account: AccountServiceSteps;

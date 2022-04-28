@@ -1,7 +1,7 @@
-import DatabaseStep from "../database/steps/DatabaseStep";
-import { test } from "../framework/config/base-test";
-import Allure from "../framework/reporter/Allure";
-import ExcelUtil from "../framework/utils/ExcelUtil";
+import Allure from "@allure";
+import ExcelUtil from "@utils/ExcelUtil";
+import DatabaseStep from "@dbSteps/DatabaseStep";
+import { test } from "@base-test";
 
 const testData = ExcelUtil.getTestDataArray("DatabaseTest");
 // eslint-disable-next-line no-restricted-syntax

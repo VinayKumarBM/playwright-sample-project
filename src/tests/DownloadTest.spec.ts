@@ -1,7 +1,7 @@
-import ConfigurationSteps from "../advantage/steps/ConfigurationSteps";
-import HomeSteps from "../advantage/steps/HomeSteps";
-import { test } from "../framework/config/base-test";
-import Allure from "../framework/reporter/Allure";
+import ConfigurationSteps from "@uiSteps/ConfigurationSteps";
+import HomeSteps from "@uiSteps/HomeSteps";
+import { test } from "@base-test";
+import Allure from "@allure";
 
 test(`DownloadTest - To download pdf file from application`, async ({ page }) => {
     Allure.attachDetails("To download pdf file from application", null);

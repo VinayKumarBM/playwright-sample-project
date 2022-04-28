@@ -1,8 +1,8 @@
 import test from "@playwright/test";
 import { IRecordSet } from "mssql";
-import Assert from "../../framework/playwright/asserts/Assert";
-import DBUtil from "../../framework/utils/DBUtil";
-import DatabaseConstants from "../constants/DatabaseConstants";
+import Assert from "@asserts/Assert";
+import DBUtil from "@utils/DBUtil";
+import DatabaseConstants from "@dbConstants/DatabaseConstants";
 
 export default class DatabaseStep {
     public async executeMSSQLQuery(query: string) {

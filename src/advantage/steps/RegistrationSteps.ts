@@ -1,10 +1,10 @@
 import test, { Page } from "@playwright/test";
-import UIActions from "../../framework/playwright/actions/UIActions";
-import Assert from "../../framework/playwright/asserts/Assert";
-import StringUtil from "../../framework/utils/StringUtil";
-import CommonConstants from "../constants/CommonConstants";
-import RegistrationPageConstants from "../constants/RegistrationPageConstants";
-import RegistrationPage from "../pages/RegistrationPage";
+import UIActions from "@uiActions/UIActions";
+import Assert from "@asserts/Assert";
+import StringUtil from "@utils/StringUtil";
+import CommonConstants from "@uiConstants/CommonConstants";
+import RegistrationPageConstants from "@uiConstants/RegistrationPageConstants";
+import RegistrationPage from "@pages/RegistrationPage";
 
 export default class RegistrationSteps {
     private ui: UIActions;

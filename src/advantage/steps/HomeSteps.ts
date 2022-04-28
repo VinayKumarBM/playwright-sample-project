@@ -1,9 +1,9 @@
 import test, { Page } from "@playwright/test";
-import UIActions from "../../framework/playwright/actions/UIActions";
-import Assert from "../../framework/playwright/asserts/Assert";
-import CommonConstants from "../constants/CommonConstants";
-import HomePageConstants from "../constants/HomePageConstants";
-import HomePage from "../pages/HomePage";
+import UIActions from "@uiActions/UIActions";
+import Assert from "@asserts/Assert";
+import CommonConstants from "@uiConstants/CommonConstants";
+import HomePageConstants from "@uiConstants/HomePageConstants";
+import HomePage from "@pages/HomePage";
 
 export default class HomeSteps {    
     private ui: UIActions;
