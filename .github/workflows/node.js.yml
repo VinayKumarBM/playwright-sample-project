@@ -24,10 +24,13 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: npm i
+    - name: Install dependencies
+    - run: npm ci
+    - name: Suite creation
     - run: npm run create:suite SHEET=Regression --if-present
+    - name: Test execution
     - run: npm test
-    
+      if: always()
     - uses: actions/upload-artifact@v2
       with:
        name: test-results
