@@ -76,6 +76,26 @@ export default class StringUtil {
   }
 
   /**
+   * Generates random string of given length with all letters a as uppercase
+   * @param length
+   * @returns
+   */
+  public static randomUppercaseString(length: number): string {
+    const str = randomString.generate({ length: length, charset: 'alphabetic', capitalization: "uppercase" });
+    return str;
+  }
+
+  /**
+   * Generates random string of given length with all letters a as lowercase
+   * @param length
+   * @returns
+   */
+  public static randomLowercaseString(length: number): string {
+    const str = randomString.generate({ length: length, charset: 'alphabetic', capitalization: "lowercase" });
+    return str;
+  }
+
+  /**
    * Generates random number string of given length
    * @param length
    * @returns

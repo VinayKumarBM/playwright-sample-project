@@ -14,7 +14,7 @@ const createData = ExcelUtil.getTestData(SHEET, "TC01_AccountCreateRequest");
 test(`${createData.TestID} - ${createData.Description}`, async ({ gData }) => {
     Allure.attachDetails(createData.Description, createData.Issue);
     const userName = StringUtil.randomAlphabeticString(5);
-    const password = `${StringUtil.randomAlphanumericString(5)}1`;
+    const password = `${StringUtil.randomUppercaseString(1)}${StringUtil.randomLowercaseString(4)}${StringUtil.randomNumberString(3)}`;
     const phoneNumber = StringUtil.randomNumberString(10);
     const email = `${userName}@email.com`;
     const requestData = {
