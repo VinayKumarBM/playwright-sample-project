@@ -2,6 +2,5 @@
 /allure-results
 /allure-report
 /node_modules
-package-lock.json
 node_modules
 **/*.test.ts
