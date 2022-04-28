@@ -9,29 +9,22 @@ on:
   
 jobs:
   build:
-
     runs-on: windows-latest
-
-    strategy:
-      matrix:
-        node-version: [16.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
+    
     steps:
-    - uses: actions/checkout@v3
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v2
       with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
+       node-version: '16'
     - name: Install dependencies
     - run: npm ci
     - name: Suite creation
-    - run: npm run create:suite SHEET=Regression --if-present
+    - run: npm run create:suite SHEET=Regression
     - name: Test execution
     - run: npm test
+    - name: Upload test results
       if: always()
-    - uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v2
       with:
        name: test-results
        path: test-results
