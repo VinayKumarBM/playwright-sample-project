@@ -31,6 +31,7 @@ jobs:
     - name: Test execution
       run: npm test
     - name: Generating execution report
+      if: always()
       run: npx ts-node ./src/framework/reporter/HTMLReporter.ts  
     - name: Upload test results
       if: always()
