@@ -1,6 +1,6 @@
 import HTMLReport from "jasmine-xml2html-converter";
 import dotenv from 'dotenv';
-import CommonConstants from "framework/constants/CommonConstants";
+import CommonConstants from "../constants/CommonConstants";
 
 dotenv.config();
 
