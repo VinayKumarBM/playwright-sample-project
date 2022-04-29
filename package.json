@@ -52,6 +52,7 @@
     "xmldom": "0.6.0",
     "xpath": "0.0.32",
     "@types/convert-excel-to-json": "1.7.1",
-    "convert-excel-to-json": "1.7.0"
+    "convert-excel-to-json": "1.7.0",
+    "jasmine-xml2html-converter": "0.0.2"
   }
 }

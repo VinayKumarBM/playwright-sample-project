@@ -30,6 +30,8 @@ jobs:
       run: npm run create:suite SHEET=Regression --if-present
     - name: Test execution
       run: npm test
+    - name: Generating execution report
+      run: npx ts-node ./src/framework/reporter/HTMLReporter.ts  
     - name: Upload test results
       if: always()
       uses: actions/upload-artifact@v3
