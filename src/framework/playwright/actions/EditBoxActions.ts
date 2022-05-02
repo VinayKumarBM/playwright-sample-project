@@ -29,7 +29,7 @@ export default class EditBoxActions extends UIElementActions {
    * @returns
    */
   public async fill(value: string) {
-    await test.step(`Entering ${this.description}`, async () => {
+    await test.step(`Entering ${this.description} as ${value}`, async () => {
       await this.getLocator().fill(value);
     });
     return this;
@@ -41,7 +41,7 @@ export default class EditBoxActions extends UIElementActions {
    * @returns
    */
   public async type(value: string) {
-    await test.step(`Typing ${this.description}`, async () => {
+    await test.step(`Typing ${this.description} as ${value}`, async () => {
       await this.getLocator().type(value);
     });
     return this;
@@ -53,7 +53,7 @@ export default class EditBoxActions extends UIElementActions {
    * @returns
    */
   public async fillAndTab(value: string) {
-    await test.step(`Entering ${this.description} and Tab`, async () => {
+    await test.step(`Entering ${this.description} as ${value} and Tab`, async () => {
       await this.getLocator().fill(value);
       await this.getLocator().press("Tab");
     });
@@ -66,7 +66,7 @@ export default class EditBoxActions extends UIElementActions {
    * @returns
    */
   public async typeAndTab(value: string) {
-    await test.step(`Entering ${this.description} and Tab`, async () => {
+    await test.step(`Entering ${this.description} as ${value} and Tab`, async () => {
       await this.getLocator().type(value);
       await this.getLocator().press("Tab");
     });
