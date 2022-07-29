@@ -111,13 +111,14 @@ export default class UIElementActions {
 
   /**
    * wait for element to be visible
+   * @param wait time for element is visible
    * @returns
    */
-  public async waitTillVisible() {
+  public async waitTillVisible(sec: number) {
     await test.step(
       `Wait for ${this.description} to be visible in DOM`,
       async () => {
-        await this.getLocator().waitFor({ state: "visible" });
+        await this.getLocator().waitFor({ state: "visible", setTimeout: sec * 1000 });
       },
     );
     return this;
@@ -251,15 +252,14 @@ export default class UIElementActions {
 
   /**
    * checks if element is visible
+   * @param wait time for element to be visible
    * @returns Promise<boolean>
    */
-  public async isVisible(): Promise<boolean> {
+  public async isVisible(sec: number): Promise<boolean> {
     let visibility: boolean;
     await test.step(`Checking if ${this.description} is visible`, async () => {
       try {
-        const element = this.getLocator();
-        await element.waitFor();
-        visibility = await element.isVisible();
+        visibility = await this.getLocator().isVisible({ timeout:  sec * 1000 });
       } catch (error) {
         visibility = false;
       }
