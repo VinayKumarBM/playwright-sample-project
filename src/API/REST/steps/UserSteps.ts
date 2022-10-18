@@ -6,7 +6,7 @@ import RESTConstants from "@restConstants/RESTConstants";
 
 export default class UserSteps {
     private api: APIActions;
-
+    private BASE_URL = process.env.REST_API_BASE_URL;
     constructor(private page: Page) {
         this.api = new APIActions(this.page);
     }
@@ -18,7 +18,7 @@ export default class UserSteps {
     public async get(endPoint: string, operation: string): Promise<RESTResponse> {
         let response: RESTResponse;
         await test.step(`Making call to GET ${operation}`, async () => {
-            response = await this.api.rest.get(endPoint, this.header, operation);
+            response = await this.api.rest.get(this.BASE_URL + endPoint, this.header, operation);
         });        
         return response;
     }
@@ -27,7 +27,8 @@ export default class UserSteps {
         operation: string): Promise<RESTResponse> {
         let response: RESTResponse;
         await test.step(`Making POST call to ${operation}`, async () => {
-            response = await this.api.rest.post(endPoint, this.header, requestBodyFile, requestData, operation);
+            const requestJSON = await this.api.rest.createRequestBody(requestBodyFile, requestData);
+            response = await this.api.rest.post(this.BASE_URL + endPoint, this.header, requestJSON, operation);
         });
         return response;
     }
@@ -36,7 +37,8 @@ export default class UserSteps {
         operation: string): Promise<RESTResponse> {
         let response: RESTResponse;
         await test.step(`Making PUT call to ${operation}`, async () => {
-            response = await this.api.rest.put(endPoint, this.header, requestBodyFile, requestData, operation);
+            const requestJSON = await this.api.rest.createRequestBody(requestBodyFile, requestData);
+            response = await this.api.rest.put(this.BASE_URL + endPoint, this.header, requestJSON, operation);
         });
         return response;
     }
@@ -44,7 +46,7 @@ export default class UserSteps {
     public async delete(endPoint: string, operation: string): Promise<RESTResponse> {
         let response: RESTResponse;
         await test.step(`Making DELETE call to ${operation}`, async () => {
-            response = await this.api.rest.delete(endPoint, this.header, operation);
+            response = await this.api.rest.delete(this.BASE_URL + endPoint, this.header, operation);
         });
         return response;
     }
