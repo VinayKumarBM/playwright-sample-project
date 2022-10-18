@@ -1,48 +1,43 @@
 import { test, Page, APIResponse } from '@playwright/test';
 import fs from 'fs';
+import fetchToCurl from 'fetch-to-curl';
 import CommonConstants from '../../constants/CommonConstants';
 import StringUtil from '../../utils/StringUtil';
 import RESTResponse from "./RESTResponse";
 
 export default class RESTRequest {
-    constructor(private page: Page) {}
-
+    constructor(private page: Page) { }
     /**
-     * Creates request body by replacing the input parameters
-     * @param jsonFilePath 
+     * Creates request body from JSON file by replacing the input parameters
+     * @param jsonFileName 
      * @param data 
      * @returns 
      */
-    private async createRequestBody(jsonFilePath: string, data: any): Promise<string> {
-        let json = fs.readFileSync(CommonConstants.REST_JSON_REQUEST_PATH + jsonFilePath, 'utf-8');
+    public async createRequestBody(jsonFileName: string, data: any): Promise<string> {
+        let json = fs.readFileSync(CommonConstants.REST_JSON_REQUEST_PATH + jsonFileName, 'utf-8');
         json = StringUtil.formatStringValue(json, data);
-        console.log(`Request body : ${json}`);
         return json;
     }
- 
     /**
      * Make POST request and return response
      * @param endPoint 
      * @param requestHeader 
-     * @param fileName 
-     * @param requestData
+     * @param jsonAsString
      * @param description 
      * @returns 
      */
-    public async post(endPoint: string, requestHeader: any, fileName: string, 
-       requestData: any, description: string): Promise<RESTResponse> {
+    public async post(endPoint: string, requestHeader: any, jsonAsString: string,
+        description: string): Promise<RESTResponse> {
         const headersAsJson = JSON.parse(JSON.stringify(requestHeader));
         let restResponse: RESTResponse;
         await test.step(`Making POST request for ${description}`, async () => {
-            const url = process.env.REST_API_BASE_URL + endPoint;
-            console.log(`URL: ${url}`);
-            const json = await this.createRequestBody(fileName, requestData);
-            const response = await this.page.request.post(url, { headers: headersAsJson, data: JSON.parse(json) });
+            this.printRequest(endPoint, headersAsJson, jsonAsString, 'post');
+            const response = await this.page.request.post(endPoint,
+                { headers: headersAsJson, data: JSON.parse(jsonAsString) });
             restResponse = await this.setRestResponse(response, description);
         });
         return restResponse;
     }
-
     /**
      * Sets the API Response into RestResponse object
      * @param response 
@@ -54,15 +49,9 @@ export default class RESTRequest {
         const headers = response.headers();
         const statusCode = response.status();
         const restResponse: RESTResponse = new RESTResponse(headers, body, statusCode, description);
-        try {
-            console.log(`Response body: ${JSON.stringify(JSON.parse(body), undefined, 2)}`);
-        } catch (error) {
-            console.log(`Error while parsing response ${error.message}`, body);
-            throw new Error(error);
-        }        
+        console.log(`Response body: ${JSON.stringify(JSON.parse(body), undefined, 2)}`);
         return restResponse;
     }
-
     /**
      * Make Get request and return response
      * @param endPoint 
@@ -74,60 +63,52 @@ export default class RESTRequest {
         const headersAsJson = JSON.parse(JSON.stringify(requestHeader));
         let restResponse: RESTResponse;
         await test.step(`Making GET request for ${description}`, async () => {
-            const url = process.env.REST_API_BASE_URL + endPoint;
-            console.log(`URL: ${url}`);
-            const response = await this.page.request.get(url, { headers: headersAsJson });
+            this.printRequest(endPoint, headersAsJson, null, 'get');
+            const response = await this.page.request.get(endPoint, { headers: headersAsJson });
             restResponse = await this.setRestResponse(response, description);
         });
         return restResponse;
     }
-
     /**
      * Make Put request and return response
      * @param endPoint 
      * @param requestHeader 
-     * @param fileName 
-     * @param requestData
+     * @param jsonAsString 
      * @param description 
      * @returns 
      */
-    public async put(endPoint: string, requestHeader: any, fileName: any, 
-        requestData: any, description: string): Promise<RESTResponse> {
+    public async put(endPoint: string, requestHeader: any, jsonAsString: any,
+        description: string): Promise<RESTResponse> {
         const headersAsJson = JSON.parse(JSON.stringify(requestHeader));
         let restResponse: RESTResponse;
-        await test.step(`Making PUT request for ${description}`, async () => {            
-            const url = process.env.REST_API_BASE_URL + endPoint;
-            console.log(`URL: ${url}`);
-            const json = await this.createRequestBody(fileName, requestData);
-            const response = await this.page.request.put(url, { headers: headersAsJson, data: JSON.parse(json) });
+        await test.step(`Making PUT request for ${description}`, async () => {
+            this.printRequest(endPoint, headersAsJson, jsonAsString, 'put');
+            const response = await this.page.request.put(endPoint,
+                { headers: headersAsJson, data: JSON.parse(jsonAsString) });
             restResponse = await this.setRestResponse(response, description);
         });
         return restResponse;
     }
-
     /**
      * Make Patch request and return response
      * @param endPoint 
      * @param requestHeader 
-     * @param fileName 
-     * @param requestData
+     * @param jsonAsString 
      * @param description 
      * @returns 
      */
-    public async patch(endPoint: string, requestHeader: any, fileName: any, 
-        requestData: any, description: string): Promise<RESTResponse> {
+    public async patch(endPoint: string, requestHeader: any, jsonAsString: any,
+        description: string): Promise<RESTResponse> {
         const headersAsJson = JSON.parse(JSON.stringify(requestHeader));
         let restResponse: RESTResponse;
-        await test.step(`Making PATCH request for ${description}`, async () => {            
-            const url = process.env.REST_API_BASE_URL + endPoint;
-            console.log(`URL: ${url}`);
-            const json = await this.createRequestBody(fileName, requestData);
-            const response = await this.page.request.patch(url, { headers: headersAsJson, data: JSON.parse(json) });
+        await test.step(`Making PATCH request for ${description}`, async () => {
+            this.printRequest(endPoint, headersAsJson, jsonAsString, 'patch');
+            const response = await this.page.request.patch(endPoint,
+                { headers: headersAsJson, data: JSON.parse(jsonAsString) });
             restResponse = await this.setRestResponse(response, description);
         });
         return restResponse;
     }
-
     /**
      * Make Delete request and return response
      * @param endPoint 
@@ -136,13 +117,32 @@ export default class RESTRequest {
      * @returns 
      */
     public async delete(endPoint: string, requestHeader: any, description: string): Promise<RESTResponse> {
+        const headersAsJson = JSON.parse(JSON.stringify(requestHeader));
         let restResponse: RESTResponse;
         await test.step(`Making DELETE request for ${description}`, async () => {
-            const url = process.env.REST_API_BASE_URL + endPoint;
-            console.log(`URL: ${url}`);
-            const response = await this.page.request.delete(url, { headers: requestHeader });
+            this.printRequest(endPoint, headersAsJson, null, 'delete');
+            const response = await this.page.request.delete(endPoint, { headers: headersAsJson });
             restResponse = await this.setRestResponse(response, description);
         });
         return restResponse;
+    }
+    /**
+     * Prints the API request on console in curl format
+     * @param endPoint 
+     * @param requestHeader 
+     * @param jsonRequestBody 
+     * @param method 
+     */
+    private printRequest(endPoint: string, requestHeader: any, jsonRequestBody: string, method: string) {
+        let requestBody = jsonRequestBody;
+        if (jsonRequestBody !== null) {
+            requestBody = JSON.stringify(JSON.parse(jsonRequestBody), undefined, 2);
+        }
+        console.log("Request: ", fetchToCurl({
+            url: endPoint,
+            headers: requestHeader,
+            body: requestBody,
+            method: method,
+        }));
     }
 }

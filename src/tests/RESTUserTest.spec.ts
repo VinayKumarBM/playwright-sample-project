@@ -42,9 +42,6 @@ test(`${addUserData.TestID} - ${addUserData.Description}`, async ({ gData }) => 
     };
     const response = await user.post(addUserData.EndPoint, addUserData.RequestBody, requestData, addUserData.Operation);
     await user.verifyStatusCode(response, addUserData.Status);
-    await user.verifyContent(response, "$.password", password, "Password");
-    await user.verifyContent(response, addUserData.JSONPath, userName, "User Name");
-    await user.verifyContent(response, "$.phone", phoneNumber, "Phone Number");
     const id = await user.extractResponseValue(response, "$.id", addUserData.Operation);
     gData.set("id", id);
     gData.set("password", password);

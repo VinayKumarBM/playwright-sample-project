@@ -34,10 +34,18 @@ const config: PlaywrightTestConfig = {
   workers: Number.parseInt(process.env.PARALLEL_THREAD, 10),
   reporter: [
     ["dot"],
-    ["allure-playwright"],
+    ["allure-playwright", {
+      detail: false,
+      suiteTitle: false,
+    }],
     ['html', { open: 'never', outputFolder: "./test-results/results" }],
     ["junit", { outputFile: "./test-results/results/results.xml" }],
+    ["json", { outputFile: "./test-results/results/results.json" }],
     ["./src/framework/logger/TestListener.ts"],
+    ['monocart-reporter', {
+      name: "Automation Report",
+      outputFile: './test-results/results/report.html',
+    }],
   ],
   projects: [  
     {
