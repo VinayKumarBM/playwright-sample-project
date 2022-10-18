@@ -86,12 +86,9 @@ export default class UIElementActions {
    * @returns
    */
   public async waitTillInvisible() {
-    await test.step(
-      `Waiting for ${this.description} to be invisible`,
-      async () => {
+    await test.step(`Waiting for ${this.description} to be invisible`, async () => {
         await this.getLocator().waitFor({ state: "hidden" });
-      },
-    );
+      });
     return this;
   }
 
@@ -100,12 +97,9 @@ export default class UIElementActions {
    * @returns
    */
   public async waitTillDetached() {
-    await test.step(
-      `Wait for ${this.description} to be detached from DOM`,
-      async () => {
+    await test.step(`Wait for ${this.description} to be detached from DOM`, async () => {
         await this.getLocator().waitFor({ state: "detached" });
-      },
-    );
+      });
     return this;
   }
 
@@ -115,12 +109,9 @@ export default class UIElementActions {
    * @returns
    */
   public async waitTillVisible(sec: number) {
-    await test.step(
-      `Wait for ${this.description} to be visible in DOM`,
-      async () => {
-        await this.getLocator().waitFor({ state: "visible", setTimeout: sec * 1000 });
-      },
-    );
+    await test.step(`Wait for ${this.description} to be visible in DOM`, async () => {
+        await this.getLocator().waitFor({ state: "visible", timeout: sec * 1000 });
+      });
     return this;
   }
 
@@ -129,12 +120,9 @@ export default class UIElementActions {
    * @returns
    */
   public async waitForPresent() {
-    await test.step(
-      `Wait for ${this.description} to attach to DOM`,
-      async () => {
+    await test.step(`Wait for ${this.description} to attach to DOM`, async () => {
         await this.getLocator().waitFor({ state: "attached" });
-      },
-    );
+      });
     return this;
   }
 
@@ -183,14 +171,11 @@ export default class UIElementActions {
    */
   public async getAttribute(attributeName: string): Promise<string> {
     let value: string;
-    await test.step(
-      `Getting attribute value of ${this.description}`,
-      async () => {
+    await test.step(`Getting attribute value of ${this.description}`, async () => {
         const element = this.getLocator();
         await element.waitFor();
         value = (await element.getAttribute(attributeName)).trim();
-      },
-    );
+      });
     return value;
   }
 
@@ -259,7 +244,7 @@ export default class UIElementActions {
     let visibility: boolean;
     await test.step(`Checking if ${this.description} is visible`, async () => {
       try {
-        visibility = await this.getLocator().isVisible({ timeout:  sec * 1000 });
+        visibility = await this.getLocator().isVisible({ timeout: sec * 1000 });
       } catch (error) {
         visibility = false;
       }
@@ -283,14 +268,11 @@ export default class UIElementActions {
    */
   public async getAllTextContent(): Promise<string[]> {
     let content: string[];
-    await test.step(
-      `Getting all the text content of ${this.description}`,
-      async () => {
+    await test.step(`Getting all the text content of ${this.description}`, async () => {
         const element = this.getLocators();
         await element.first().waitFor();
         content = await element.allTextContents();
-      },
-    );
+      });
     return content;
   }
 
@@ -304,5 +286,29 @@ export default class UIElementActions {
       count = await this.getLocators().count();
     });
     return count;
+  }
+  /**
+   * Performs mouse click action on the element
+   * @returns 
+   */
+  public async mouseClick() {
+    await test.step(`Clicking on ${this.description}`, async () => {
+      await this.getLocator().scrollIntoViewIfNeeded();
+      const box = await this.getLocator().boundingBox();
+      await this.page.mouse.click(box.x + box.width / 2, box.y + box.height / 2);
+    });
+    return this;
+  }
+  /**
+   * Click on element using js
+   * @returns
+   */
+  public async jsClick() {
+    await test.step(`Clicking on ${this.description}`, async () => {
+      const ele = this.getLocator();
+      await ele.waitFor();
+      await ele.evaluate((node: HTMLElement) => { node.click(); });
+    });
+    return this;
   }
 }
