@@ -1,7 +1,0 @@
-/test-results
-/allure-results
-/allure-report
-/node_modules
-node_modules
-**/*.test.ts
-/.vscode
