@@ -59,7 +59,7 @@ jobs:
       id: download
       with:
         name: allure-results
-        path: allure-results
+        path: build/allure-results
 
     - name: Get Allure history
       uses: actions/checkout@v2
@@ -82,6 +82,6 @@ jobs:
       uses: peaceiris/actions-gh-pages@v3
       if: always()
       with:
-        PERSONAL_TOKEN: ${{ secrets.GH_TOKEN }}
+        PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         PUBLISH_BRANCH: gh-pages
         PUBLISH_DIR: allure-history
