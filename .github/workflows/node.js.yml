@@ -9,7 +9,7 @@ on:
 
 jobs:
   tests:
-
+    name: Test Execution
     runs-on: windows-latest
 
     strategy:
@@ -40,9 +40,16 @@ jobs:
       with:
         name: test-results
         path: test-results
+    - name: Upload allure-results artifact
+      if: always()
+      uses: actions/upload-artifact@master
+      with:
+        name: allure-results
+        path: build/allure-results
+        retention-days: 30    
         
   generate_report:
-    name: Allure report
+    name: Allure Report
     runs-on: ubuntu-latest
     if: always()
     needs: [ tests ]
