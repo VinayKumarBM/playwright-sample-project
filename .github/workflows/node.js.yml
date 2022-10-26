@@ -45,7 +45,7 @@ jobs:
       uses: actions/upload-artifact@master
       with:
         name: allure-results
-        path: build/allure-results
+        path: allure-results
         retention-days: 30    
         
   generate_report:
@@ -59,7 +59,7 @@ jobs:
       id: download
       with:
         name: allure-results
-        path: build/allure-results
+        path: allure-results
 
     - name: Get Allure history
       uses: actions/checkout@v2
