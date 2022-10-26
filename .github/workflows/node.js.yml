@@ -1,14 +1,14 @@
 # This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: Node.js CI
+name: Automation Test Execution 
 
 on:
   push:
     branches: [ master ]
 
 jobs:
-  build:
+  tests:
 
     runs-on: windows-latest
 
@@ -40,28 +40,41 @@ jobs:
       with:
         name: test-results
         path: test-results
-    - name: allure report action
+        
+  generate_report:
+    name: Allure report
+    runs-on: ubuntu-latest
+    if: always()
+    needs: [ tests ]
+    steps:
+    - name: Download Artifacts
+      uses: actions/download-artifact@v3
+      id: download
+      with:
+        name: allure-results
+        path: allure-results
+
+    - name: Get Allure history
+      uses: actions/checkout@v2
+      if: always()
+      continue-on-error: true
+      with:
+        ref: gh-pages
+        path: gh-pages
+
+    - name: Allure Report action
       uses: simple-elf/allure-report-action@master
       if: always()
-      id: allure-report
       with:
-        allure_results: build/allure-results
+        allure_results: allure-results
+        allure_report: ${{ github.run_number }}
         gh_pages: gh-pages
-        allure_report: allure-report
-        allure_history: allure-history
-    - name: publishing allure report
+        allure_history: /allure-history
+
+    - name: Deploy allure report to Github Pages
+      uses: peaceiris/actions-gh-pages@v3
       if: always()
-      uses: peaceiris/actions-gh-pages@v2
-      env:
-        PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        PERSONAL_TOKEN: ${{ secrets.GH_TOKEN }}
         PUBLISH_BRANCH: gh-pages
         PUBLISH_DIR: allure-history
-    - name: Post the link to the allure report
-      if: always()
-      uses: Sibz/github-status-action@v1
-      with: 
-        authToken: ${{secrets.GITHUB_TOKEN}}
-        context: 'Test report'
-        state: 'success'
-        sha: ${{ github.event.pull_request.head.sha }}
-        target_url: vinaykumarbm.github.io/playwright-sample-project/${{ github.run_number }}
