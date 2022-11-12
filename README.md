@@ -2,7 +2,7 @@
 
 ## **Overview:**
 
-This is a sample Playwright project using Typescript as scripting language and uses playwright-testrunner to execute test cases. This is a Data Driven framework focused on separating the test scripts logic and the test data from each other. This allows us to create test automation scripts by passing different sets of test data. The test data set is kept in an external Excel Sheet. The test scripts connect to the external Excel sheet to get the test data. This framework significantly reduces the number of test scripts compared to a modular based framework when we need to test for multiple sets of data for same functionality.
+This is a sample Automation project using Playwright and Typescript and uses playwright-testrunner to execute test cases. This is a Data Driven framework focused on separating the test scripts logic and the test data from each other. This allows us to create test automation scripts by passing different sets of test data. The test data set is kept in an external Excel Sheet. The test scripts connect to the external Excel sheet to get the test data. This framework significantly reduces the number of test scripts compared to a modular based framework when we need to test for multiple sets of data for same functionality.
 
 For Demo purpose UI test cases are created on [advantageonlineshopping.com](http://advantageonlineshopping.com/) site and API test cases are created on these [SOAP API](https://www.advantageonlineshopping.com/accountservice/ws/accountservice.wsdl) & [REST API](https://fakestoreapi.com) endpoints.
 
@@ -66,6 +66,9 @@ set TEST_NAME=<TestFileName> && npm run local:test
 To change any environment configuration in .env file at run time use set command.
 Eg: To change browser to MS Edge use below command
 ```sh
+
+##
+
 set BROWSER=edge
 ```
 Similar command can be used to update other environment configuration
@@ -84,3 +87,5 @@ Execution log will be present in the log file.
 ```sh
 test-results/logs/execution.log
 ```
+##  ##
+**:pencil: If you find my work interesting don't forget to give a Star :star: & Follow me :busts_in_silhouette:**
