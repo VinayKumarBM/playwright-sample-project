@@ -66,9 +66,6 @@ set TEST_NAME=<TestFileName> && npm run local:test
 To change any environment configuration in .env file at run time use set command.
 Eg: To change browser to MS Edge use below command
 ```sh
-
-##
-
 set BROWSER=edge
 ```
 Similar command can be used to update other environment configuration
