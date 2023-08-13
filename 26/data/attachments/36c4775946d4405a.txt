@@ -1,0 +1,3 @@
+Response body: {
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsInVzZXIiOiJqb2huZCIsImlhdCI6MTY5MTkxMDc0N30.odgTLMnyd2c9_f5vIlscu8i3ZmlOdRWm0mKAY9m2bCI"
+}

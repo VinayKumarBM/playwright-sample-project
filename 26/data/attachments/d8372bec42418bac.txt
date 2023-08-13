@@ -1,0 +1,17 @@
+SOAP Response: 
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+    <SOAP-ENV:Header/>
+    <SOAP-ENV:Body>
+        <ns2:AccountLoginResponse xmlns:ns2="com.advantage.online.store.accountservice">
+            <ns2:StatusMessage>
+                <ns2:success>true</ns2:success>
+                <ns2:userId>765680483</ns2:userId>
+                <ns2:reason>Login Successful</ns2:reason>
+                <ns2:token>eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ3d3cuYWR2YW50YWdlb25saW5lc2hvcHBpbmcuY29tIiwidXNlcklkIjo3NjU2ODA0ODMsInN1YiI6IlBQcFJOIiwicm9sZSI6IlVTRVIifQ.ss2UOSIzD_B3n6OxN2xUbnzi-2TGQgnv0RN8AaiYJFQ</ns2:token>
+                <ns2:sessionId>189edbe1ca9@7E78D7D1A^i%765680483</ns2:sessionId>
+                <ns2:t_authorization>UFBwUk46T2NneG8yMjI=</ns2:t_authorization>
+                <ns2:accountType>20</ns2:accountType>
+            </ns2:StatusMessage>
+        </ns2:AccountLoginResponse>
+    </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

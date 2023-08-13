@@ -1,0 +1,13 @@
+SOAP Response: 
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+    <SOAP-ENV:Header/>
+    <SOAP-ENV:Body>
+        <ns2:AccountLogoutResponse xmlns:ns2="com.advantage.online.store.accountservice">
+            <ns2:StatusMessage>
+                <ns2:success>true</ns2:success>
+                <ns2:userId>765680483</ns2:userId>
+                <ns2:reason>Logout Successful</ns2:reason>
+            </ns2:StatusMessage>
+        </ns2:AccountLogoutResponse>
+    </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
