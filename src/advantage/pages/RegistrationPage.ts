@@ -13,7 +13,7 @@ export default class RegistrationPage {
     static readonly POSTAL_CODE_TEXTBOX = "[name='postal_codeRegisterPage']";
     static readonly PROMOTION_CHECKBOX = "[name='allowOffersPromotion']";
     static readonly PRIVACY_POLICY_CHECKBOX = "[name='i_agree']";
-    static readonly REGISTER_BUTTON = "#register_btnundefined";
+    static readonly REGISTER_BUTTON = "#register_btn";
     static readonly ALREADY_HAVE_AN_ACCOUNT_LINK = "[translate='ALREADY_HAVE_AN_ACCOUNT']";
     static readonly MANDATORY_FIELD_ERROR_MESSAGE = "div.inputContainer>label.invalid";
 }

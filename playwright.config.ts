@@ -26,7 +26,7 @@ const config: PlaywrightTestConfig = {
     video: "retain-on-failure",
   },
   testDir: "./src/tests",
-  outputDir: "../../test-results/",
+  outputDir: "./test-results/failure",
   retries: Number.parseInt(process.env.RETRIES, 10),
   preserveOutput: "failures-only",
   reportSlowTests: null,
@@ -38,19 +38,19 @@ const config: PlaywrightTestConfig = {
       detail: false,
       suiteTitle: false,
     }],
-    ['html', { open: 'never', outputFolder: "./test-results/results" }],
+    ['html', { open: 'never', outputFolder: "./test-results/report" }],
     ["junit", { outputFile: "./test-results/results/results.xml" }],
     ["json", { outputFile: "./test-results/results/results.json" }],
     ["./src/framework/logger/TestListener.ts"],
     ['monocart-reporter', {
       name: "Automation Report",
-      outputFile: './test-results/results/report.html',
+      outputFile: './test-results/report/execution.html',
     }],
   ],
   projects: [  
     {
       name: "local",
-      testMatch: `*${process.env.TEST_NAME}*`,
+      testMatch: `*${process.env.TEST_NAME.trim()}*`,
     },
     {
       name: "suite",
