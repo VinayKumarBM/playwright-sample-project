@@ -22,7 +22,10 @@ const config: PlaywrightTestConfig = {
     acceptDownloads: true,
     actionTimeout: Number.parseInt(process.env.ACTION_TIMEOUT, 10) * timeInMin,
     navigationTimeout: Number.parseInt(process.env.NAVIGATION_TIMEOUT, 10) * timeInMin,
-    screenshot: "only-on-failure",
+    screenshot: { 
+      mode: "only-on-failure",
+      fullPage: true,
+    },
     video: "retain-on-failure",
   },
   testDir: "./src/tests",
@@ -37,6 +40,11 @@ const config: PlaywrightTestConfig = {
     ["allure-playwright", {
       detail: false,
       suiteTitle: false,
+      environmentInfo: {
+        OS: process.platform.toUpperCase(),
+        BROWSER: process.env.BROWSER.toUpperCase(),
+        BASE_URL: process.env.BASE_URL,
+      },
     }],
     ['html', { open: 'never', outputFolder: "./test-results/report" }],
     ["junit", { outputFile: "./test-results/results/results.xml" }],

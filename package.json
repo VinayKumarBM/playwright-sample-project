@@ -12,13 +12,14 @@
     "report": "allure serve",
     "create:suite": "cd ./src/framework/manager & npx ts-node SuiteManager.ts",
     "test": "playwright test --project=suite",
-    "local:test": "playwright test --project=local"
+    "local:test": "playwright test --project=local",
+    "local:test:ui": "playwright test --project=local --ui"
   },
   "keywords": [],
   "author": "Vinay Kumar B M",
   "license": "ISC",
   "devDependencies": {
-    "@playwright/test": "1.27.1",
+    "@playwright/test": "1.37.0",
     "@types/easy-soap-request": "4.1.1",
     "@types/express": "^4.17.13",
     "@types/ibm_db": "2.0.10",
@@ -30,7 +31,7 @@
     "@types/xmldom": "^0.1.31",
     "@typescript-eslint/eslint-plugin": "^5.16.0",
     "@typescript-eslint/parser": "^5.16.0",
-    "allure-playwright": "2.0.0-beta.19",
+    "allure-playwright": "2.5.0",
     "dotenv": "16.0.0",
     "easy-soap-request": "^4.6.0",
     "eslint": "^8.12.0",
@@ -42,7 +43,6 @@
     "mssql": "^7.2.1",
     "oracledb": "5.3.0",
     "pdf-parse": "1.1.1",
-    "playwright": "1.27.1",
     "randomstring": "1.2.2",
     "string-format": "2.0.0",
     "ts-node": "^10.4.0",

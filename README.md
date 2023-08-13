@@ -17,6 +17,7 @@ For Demo purpose UI test cases are created on [advantageonlineshopping.com](http
 - Generates Playwright's HTML Report, Allure Report & JUnit Report in HTML format for each exaction. 
 - Allure & Playwright report including snapshots and video in case of test failure.
 - Test execution logs are captured in the log file.
+- You Can execute local tests in Playwright's UI Mode, that comes with a built-in watch mode. Which helps in running and debuging of tests.
 - All the playwright related config is controlled by playwright config file.
 - Environment variables can be modified at runtime and its controlled by .env file.
 - Easy and simple integration to CI/CD tools like Jenkins.
@@ -60,6 +61,12 @@ npm run create:suite SHEET=<SheetName> && npm test
 To run individual test locally use below command.
 ```sh
 set TEST_NAME=<TestFileName> && npm run local:test
+```
+**Note:** Using set command we are setting the local TestFileName.
+
+To run individual test locally in [UI Mode](https://playwright.dev/docs/test-ui-mode) use below command.
+```sh
+set TEST_NAME=<TestFileName> && npm run local:test:ui
 ```
 **Note:** Using set command we are setting the local TestFileName.
 

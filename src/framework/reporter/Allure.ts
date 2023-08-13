@@ -6,10 +6,7 @@ export default class Allure {
         allure.description(description);
         allure.owner(os.userInfo().username);
         if (issue !== undefined && issue !== null && issue !== '') {
-            allure.link({
-                url: `${process.env.LINK}${issue}`,
-                name: issue,
-            });
+            allure.link(`${process.env.LINK}${issue}`, `ISSUE-${issue}`);
         }
     }
 }
