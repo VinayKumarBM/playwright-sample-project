@@ -1,0 +1,55 @@
+URL: http://www.advantageonlineshopping.com:80/accountservice/ws
+SOAP request : 
+<x:Envelope xmlns:x="http://schemas.xmlsoap.org/soap/envelope/" xmlns:com="com.advantage.online.store.accountservice">
+    <x:Header/>
+    <x:Body>
+        <com:CountrySearchRequest>
+            <com:internationalPhonePrefix></com:internationalPhonePrefix>
+            <com:startOfName>Saint</com:startOfName>
+        </com:CountrySearchRequest>
+    </x:Body>
+</x:Envelope>
+SOAP Response: 
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+    <SOAP-ENV:Header/>
+    <SOAP-ENV:Body>
+        <ns2:CountrySearchResponse xmlns:ns2="com.advantage.online.store.accountservice">
+            <ns2:Country>
+                <ns2:id>299</ns2:id>
+                <ns2:name>Saint Helena Island</ns2:name>
+                <ns2:isoName>sh</ns2:isoName>
+                <ns2:phonePrefix>290</ns2:phonePrefix>
+            </ns2:Country>
+            <ns2:Country>
+                <ns2:id>426</ns2:id>
+                <ns2:name>Saint Helena Island</ns2:name>
+                <ns2:isoName>sh</ns2:isoName>
+                <ns2:phonePrefix>290</ns2:phonePrefix>
+            </ns2:Country>
+            <ns2:Country>
+                <ns2:id>305</ns2:id>
+                <ns2:name>Saint Kitts and Nevis</ns2:name>
+                <ns2:isoName>kn</ns2:isoName>
+                <ns2:phonePrefix>1869</ns2:phonePrefix>
+            </ns2:Country>
+            <ns2:Country>
+                <ns2:id>429</ns2:id>
+                <ns2:name>Saint Kitts and Nevis</ns2:name>
+                <ns2:isoName>kn</ns2:isoName>
+                <ns2:phonePrefix>1869</ns2:phonePrefix>
+            </ns2:Country>
+            <ns2:Country>
+                <ns2:id>301</ns2:id>
+                <ns2:name>Saint Vincent and the Grenadines</ns2:name>
+                <ns2:isoName>vc</ns2:isoName>
+                <ns2:phonePrefix>1784</ns2:phonePrefix>
+            </ns2:Country>
+            <ns2:Country>
+                <ns2:id>427</ns2:id>
+                <ns2:name>Saint Vincent and the Grenadines</ns2:name>
+                <ns2:isoName>vc</ns2:isoName>
+                <ns2:phonePrefix>1784</ns2:phonePrefix>
+            </ns2:Country>
+        </ns2:CountrySearchResponse>
+    </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
