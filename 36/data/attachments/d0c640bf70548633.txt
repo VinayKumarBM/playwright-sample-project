@@ -1,0 +1,7 @@
+Request:  curl 'https://fakestoreapi.com/auth/login' -X POST -H "Content-Type: application/json" -H "Accept: application/json" --data-binary '{
+  "username": "johnd",
+  "password": "m38rmF$"
+}'
+Response body: {
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsInVzZXIiOiJqb2huZCIsImlhdCI6MTcwNjU0MjI0NH0.qoaaxtWV2idiIt9U8Kq1pHPsfB3iZ8gFNMU4g137vO4"
+}
