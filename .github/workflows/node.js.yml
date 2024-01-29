@@ -13,11 +13,11 @@ jobs:
     runs-on: windows-latest
     steps:
     - name: Checkout code from repository
-      uses: actions/checkout@v4
-    - name: Setting up Node.js 20
-      uses: actions/setup-node@v4.0.1
+      uses: actions/checkout@v3
+    - name: Setting up Node.js 18
+      uses: actions/setup-node@v3
       with:
-        node-version: 20
+        node-version: 18
         cache: 'npm'
     - name: Install dependencies    
       run: npm ci && npx playwright install
@@ -30,7 +30,7 @@ jobs:
       run: npx ts-node ./src/framework/reporter/HTMLReporter.ts  
     - name: Upload test results
       if: always()
-      uses: actions/upload-artifact@v4.0.1
+      uses: actions/upload-artifact@v3
       with:
         name: test-results
         path: test-results
@@ -49,14 +49,14 @@ jobs:
     needs: [ tests ]
     steps:
     - name: Download Artifacts
-      uses: actions/download-artifact@v4.1.1
+      uses: actions/download-artifact@v3
       id: download
       with:
         name: allure-results
         path: allure-results
 
     - name: Get Allure history
-      uses: actions/checkout@v4
+      uses: actions/checkout@v2
       if: always()
       continue-on-error: true
       with:
