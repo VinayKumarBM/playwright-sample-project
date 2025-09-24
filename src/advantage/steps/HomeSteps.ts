@@ -69,6 +69,7 @@ export default class HomeSteps {
      */
     public async logout() {
         await test.step(`Logged out of application`, async () => {
+            await this.ui.pauseInSecs(CommonConstants.TWO);
             await this.ui.element(HomePage.LOGGED_IN_USER, HomePageConstants.USER_NAME).click();
             await this.ui.element(HomePage.SIGN_OUT_LINK, HomePageConstants.SIGN_OUT_LINK).click();
             await this.ui.pauseInSecs(CommonConstants.TWO);
