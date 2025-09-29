@@ -9,12 +9,10 @@ export default class Assert {
      */
     public static async assertTrue(condition: boolean, description: string, softAssert = false) {
         await test.step(`Verifying that ${description} is true`, async () => {
-            try {
+            if (softAssert) {
+                expect.soft(condition, `Expected is 'True' & Actual is '${condition}'`).toBeTruthy();
+            } else {
                 expect(condition, `Expected is 'True' & Actual is '${condition}'`).toBeTruthy();
-            } catch (error) {
-                if (!softAssert) {
-                    throw new Error(error);
-                }
             }
         });
     }
@@ -27,12 +25,10 @@ export default class Assert {
      */
     public static async assertContains(value1: string, value2: string, description: string, softAssert = false) {
         await test.step(`Verifying that ${description} contains text '${value2}'`, async () => {
-            try {
+            if (softAssert) {
+                expect.soft(value1, `'${value1}' is expected to CONTAIN '${value2}'`).toContain(value2);
+            } else {
                 expect(value1, `'${value1}' is expected to CONTAIN '${value2}'`).toContain(value2);
-            } catch (error) {
-                if (!softAssert) {
-                    throw new Error(error);
-                }
             }
         });
     }
@@ -47,12 +43,10 @@ export default class Assert {
     public static async assertContainsIgnoreCase(value1: string, value2: string, description: string,
         softAssert = false) {
         await test.step(`Verifying that ${description} contains text '${value2}'`, async () => {
-            try {
+            if (softAssert) {
+                expect.soft(value1.toLowerCase(), `'${value1}' is expected to CONTAIN '${value2}'`).toContain(value2.toLowerCase());
+            } else {
                 expect(value1.toLowerCase(), `'${value1}' is expected to CONTAIN '${value2}'`).toContain(value2.toLowerCase());
-            } catch (error) {
-                if (!softAssert) {
-                    throw new Error(error);
-                }
             }
         });
     }
@@ -67,13 +61,12 @@ export default class Assert {
     public static async assertEqualsIgnoreCase(actual: string, expected: string, description: string,
         softAssert = false) {
         await test.step(`Verifying that ${description} has text ${expected}`, async () => {
-            try {
+            if (softAssert) {
+                expect.soft(actual.toLowerCase(), `Expected '${expected}' should be EQUAL to Actual '${actual}'`)
+                    .toEqual(expected.toLowerCase());
+            } else {
                 expect(actual.toLowerCase(), `Expected '${expected}' should be EQUAL to Actual '${actual}'`)
                     .toEqual(expected.toLowerCase());
-            } catch (error) {
-                if (!softAssert) {
-                    throw new Error(error);
-                }
             }
         });
     }
@@ -87,12 +80,10 @@ export default class Assert {
      */
     public static async assertEquals(actual: any, expected: any, description: string, softAssert = false) {
         await test.step(`Verifying that ${description} has text ${expected}`, async () => {
-            try {
+            if (softAssert) {
+                expect.soft(actual, `Expected '${expected}' should be EQUAL to Actual '${actual}'`).toEqual(expected);
+            } else {
                 expect(actual, `Expected '${expected}' should be EQUAL to Actual '${actual}'`).toEqual(expected);
-            } catch (error) {
-                if (!softAssert) {
-                    throw new Error(error);
-                }
             }
         });
     }
@@ -105,12 +96,10 @@ export default class Assert {
      */
     public static async assertFalse(condition: boolean, description: string, softAssert = false) {
         await test.step(`Verifying that ${description} is false`, async () => {
-            try {
+            if (softAssert) {
+                expect.soft(condition, `Expected is 'false' & Acutal is '${condition}'`).toBeFalsy();
+            } else {
                 expect(condition, `Expected is 'false' & Acutal is '${condition}'`).toBeFalsy();
-            } catch (error) {
-                if (!softAssert) {
-                    throw new Error(error);
-                }
             }
         });
     }
@@ -124,12 +113,10 @@ export default class Assert {
     */
     public static async assertNotContains(actual: any, expected: any, description: string, softAssert = false) {
         await test.step(`Verifying that ${description} does not contain '${expected}'`, async () => {
-            try {
-                await expect(actual, `'${actual}' should NOT CONTAIN '${expected}'`).not.toContain(expected);
-            } catch (error) {
-                if (!softAssert) {
-                    throw new Error(error);
-                }
+            if (softAssert) {
+                expect.soft(actual, `'${actual}' should NOT CONTAIN '${expected}'`).not.toContain(expected);
+            } else {
+                expect(actual, `'${actual}' should NOT CONTAIN '${expected}'`).not.toContain(expected);
             }
         });
     }
@@ -143,12 +130,10 @@ export default class Assert {
      */
     public static async assertNotEquals(actual: any, expected: any, description: string, softAssert = false) {
         await test.step(`Verifying that ${description} is not equals to ${expected}`, async () => {
-            try {
+            if (softAssert) {
+                expect.soft(actual, `Expected '${expected}' should NOT be EQUAL to Actual '${actual}'`).not.toEqual(expected);
+            } else {
                 expect(actual, `Expected '${expected}' should NOT be EQUAL to Actual '${actual}'`).not.toEqual(expected);
-            } catch (error) {
-                if (!softAssert) {
-                    throw new Error(error);
-                }
             }
         });
     }
@@ -161,12 +146,10 @@ export default class Assert {
      */
     public static async assertNotNull(value: any, description: string, softAssert = false) {
         await test.step(`Verifying that ${description} is not null`, async () => {
-            try {
+            if (softAssert) {
+                expect.soft(value, `Expected is 'NOT null' & Actual is '${value}'`).not.toEqual(null);
+            } else {
                 expect(value, `Expected is 'NOT null' & Actual is '${value}'`).not.toEqual(null);
-            } catch (error) {
-                if (!softAssert) {
-                    throw new Error(error);
-                }
             }
         });
     }
@@ -179,12 +162,10 @@ export default class Assert {
      */
     public static async assertNull(value: any, description: string, softAssert = false) {
         await test.step(`Verifying that ${description} is equals to null`, async () => {
-            try {
+            if (softAssert) {
+                expect.soft(value, `Expected is 'null' & Actual is '${value}'`).toEqual(null);
+            } else {
                 expect(value, `Expected is 'null' & Actual is '${value}'`).toEqual(null);
-            } catch (error) {
-                if (!softAssert) {
-                    throw new Error(error);
-                }
             }
         });
     }
@@ -197,12 +178,10 @@ export default class Assert {
     */
     public static async assertUndefined(value: any, description: string, softAssert = false) {
         await test.step(`Verifying that ${description} is undefined`, async () => {
-            try {
+            if (softAssert) {
+                expect.soft(value, `Expected is 'Undefined' & Actual is '${value}'`).toEqual(typeof undefined);
+            } else {
                 expect(value, `Expected is 'Undefined' & Actual is '${value}'`).toEqual(typeof undefined);
-            } catch (error) {
-                if (!softAssert) {
-                    throw new Error(error);
-                }
             }
         });
     }
@@ -215,12 +194,10 @@ export default class Assert {
      */
     public static async assertToBeEmpty(value: any, description: string, softAssert = false) {
         await test.step(`Verifying that ${description} is empty`, async () => {
-            try {
+            if (softAssert) {
+                await expect.soft(value, `Expected is 'Empty' & Actual is '${value}'`).toBeEmpty();
+            } else {
                 await expect(value, `Expected is 'Empty' & Actual is '${value}'`).toBeEmpty();
-            } catch (error) {
-                if (!softAssert) {
-                    throw new Error(error);
-                }
             }
         });
     }
