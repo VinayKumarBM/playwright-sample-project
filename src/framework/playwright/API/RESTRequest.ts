@@ -49,7 +49,11 @@ export default class RESTRequest {
         const headers = response.headers();
         const statusCode = response.status();
         const restResponse: RESTResponse = new RESTResponse(headers, body, statusCode, description);
-        console.log(`Response body: ${JSON.stringify(JSON.parse(body), undefined, 2)}`);
+        try {
+            console.log(`Response body: ${JSON.stringify(JSON.parse(body), undefined, 2)}`);    
+        } catch (error) {
+            console.log(`Response body: ${body}`);
+        }
         return restResponse;
     }
     /**
