@@ -1,0 +1,29 @@
+URL: http://www.advantageonlineshopping.com:80/accountservice/ws
+SOAP request : 
+<x:Envelope xmlns:x="http://schemas.xmlsoap.org/soap/envelope/" xmlns:com="com.advantage.online.store.accountservice">
+    <x:Header/>
+    <x:Body>
+        <com:AccountLoginRequest>
+            <com:loginUser>xafUL</com:loginUser>
+            <com:email>xafUL@email.com</com:email>
+            <com:loginPassword>Wcldd491</com:loginPassword>
+        </com:AccountLoginRequest>
+    </x:Body>
+</x:Envelope>
+SOAP Response: 
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+    <SOAP-ENV:Header/>
+    <SOAP-ENV:Body>
+        <ns2:AccountLoginResponse xmlns:ns2="com.advantage.online.store.accountservice">
+            <ns2:StatusMessage>
+                <ns2:success>true</ns2:success>
+                <ns2:userId>311245915</ns2:userId>
+                <ns2:reason>Login Successful</ns2:reason>
+                <ns2:token>eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ3d3cuYWR2YW50YWdlb25saW5lc2hvcHBpbmcuY29tIiwidXNlcklkIjozMTEyNDU5MTUsInN1YiI6InhhZlVMIiwicm9sZSI6IlVTRVIifQ.Lq3_2DF6uFlfAy9lh4ZLyreiOoHH3_Omun8RKK3hPEM</ns2:token>
+                <ns2:sessionId>1999455311e@7E991D711F^i%311245915</ns2:sessionId>
+                <ns2:t_authorization>eGFmVUw6V2NsZGQ0OTE=</ns2:t_authorization>
+                <ns2:accountType>20</ns2:accountType>
+            </ns2:StatusMessage>
+        </ns2:AccountLoginResponse>
+    </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

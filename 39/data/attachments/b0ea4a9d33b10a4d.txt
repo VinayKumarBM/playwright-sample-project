@@ -1,0 +1,24 @@
+URL: http://www.advantageonlineshopping.com:80/accountservice/ws
+SOAP request : 
+<x:Envelope xmlns:x="http://schemas.xmlsoap.org/soap/envelope/" xmlns:com="com.advantage.online.store.accountservice">
+    <x:Header/>
+    <x:Body>
+        <com:AccountLogoutRequest>
+            <com:loginUser>311245915</com:loginUser>
+            <com:base64Token>eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ3d3cuYWR2YW50YWdlb25saW5lc2hvcHBpbmcuY29tIiwidXNlcklkIjozMTEyNDU5MTUsInN1YiI6InhhZlVMIiwicm9sZSI6IlVTRVIifQ.Lq3_2DF6uFlfAy9lh4ZLyreiOoHH3_Omun8RKK3hPEM</com:base64Token>
+        </com:AccountLogoutRequest>
+    </x:Body>
+</x:Envelope>
+SOAP Response: 
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+    <SOAP-ENV:Header/>
+    <SOAP-ENV:Body>
+        <ns2:AccountLogoutResponse xmlns:ns2="com.advantage.online.store.accountservice">
+            <ns2:StatusMessage>
+                <ns2:success>true</ns2:success>
+                <ns2:userId>311245915</ns2:userId>
+                <ns2:reason>Logout Successful</ns2:reason>
+            </ns2:StatusMessage>
+        </ns2:AccountLogoutResponse>
+    </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
