@@ -50,10 +50,6 @@ const config: PlaywrightTestConfig = {
     ["junit", { outputFile: "./test-results/results/results.xml" }],
     ["json", { outputFile: "./test-results/results/results.json" }],
     ["./src/framework/logger/TestListener.ts"],
-    ['monocart-reporter', {
-      name: "Automation Report",
-      outputFile: './test-results/report/execution.html',
-    }],
   ],
   projects: [  
     {

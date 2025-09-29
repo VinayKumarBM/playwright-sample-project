@@ -19,19 +19,18 @@
   "author": "Vinay Kumar B M",
   "license": "ISC",
   "devDependencies": {
-    "@playwright/test": "1.37.0",
+    "@playwright/test": "1.55.1",
     "@types/easy-soap-request": "4.1.1",
     "@types/express": "^4.17.13",
     "@types/ibm_db": "2.0.10",
     "@types/mssql": "^7.1.4",
     "@types/oracledb": "5.2.3",
-    "@types/pdf-parse": "^1.1.1",
     "@types/randomstring": "^1.1.8",
     "@types/string-format": "^2.0.0",
     "@types/xmldom": "^0.1.31",
     "@typescript-eslint/eslint-plugin": "^5.16.0",
     "@typescript-eslint/parser": "^5.16.0",
-    "allure-playwright": "2.5.0",
+    "allure-playwright": "3.4.1",
     "dotenv": "16.0.0",
     "easy-soap-request": "^4.6.0",
     "eslint": "^8.12.0",
@@ -42,7 +41,6 @@
     "moment": "2.29.1",
     "mssql": "^7.2.1",
     "oracledb": "5.3.0",
-    "pdf-parse": "1.1.1",
     "randomstring": "1.2.2",
     "string-format": "2.0.0",
     "ts-node": "^10.4.0",
@@ -55,6 +53,8 @@
     "convert-excel-to-json": "1.7.0",
     "jasmine-xml2html-converter": "0.0.2",
     "fetch-to-curl": "0.5.2",
-    "monocart-reporter": "1.0.7"
+    "pdf.js-extract": "0.2.1",
+    "pdf-lib": "1.17.1",
+    "compare-pdf-plus": "1.0.4"
   }
 }
