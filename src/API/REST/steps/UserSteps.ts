@@ -12,6 +12,9 @@ export default class UserSteps {
     }
     private get header() {
         return this.api.header.set(RESTConstants.CONTENT_TYPE, RESTConstants.CONTENT_JSON)
+            .set(RESTConstants.USER_AGENT, RESTConstants.BROWSER_HEADER)
+            .set(RESTConstants.ACCEPT_LANGUAGE, RESTConstants.EN_US)
+            .set(RESTConstants.CONNECTION, RESTConstants.KEEP_ALIVE)
             .set(RESTConstants.ACCEPT, RESTConstants.CONTENT_JSON).get();
     }
 
