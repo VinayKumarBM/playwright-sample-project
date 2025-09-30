@@ -2,94 +2,183 @@
 
 ## **Overview:**
 
-This is a sample Automation project using Playwright and Typescript and uses playwright-testrunner to execute test cases. This is a Data Driven framework focused on separating the test scripts logic and the test data from each other. This allows us to create test automation scripts by passing different sets of test data. The test data set is kept in an external Excel Sheet. The test scripts connect to the external Excel sheet to get the test data. This framework significantly reduces the number of test scripts compared to a modular based framework when we need to test for multiple sets of data for same functionality.
+This is a sample automation project built with **Playwright** and **TypeScript**, using the **Playwright Test Runner** to execute test cases.
+The framework follows a **Data-Driven** approach, separating test logic from test data. This allows the same test scripts to run against multiple sets of test data, significantly reducing script duplication compared to a modular framework.
 
-For Demo purpose UI test cases are created on [advantageonlineshopping.com](http://advantageonlineshopping.com/) site and API test cases are created on these [SOAP API](https://www.advantageonlineshopping.com/accountservice/ws/accountservice.wsdl) & [REST API](https://fakestoreapi.com) endpoints.
+Test data is stored in external **Excel sheets**, which the scripts read during execution.
+For demonstration purposes:
+
+* **UI test cases** are implemented on [advantageonlineshopping.com](http://advantageonlineshopping.com/).
+* **API test cases** are implemented using both [SOAP](https://www.advantageonlineshopping.com/accountservice/ws/accountservice.wsdl) and [REST](https://fakestoreapi.com) endpoints.
 
 ## Features
 
-- This framework has built in library to operate on UI, API (both SOAP & REST API) and DB (MSSQL, DB2 & Oracle).
-- Supports execution of tests in different browsers.
-- Test data is stored in an Excel sheet and from this Excel sheet user can control the test cases that needs to be run.
-- User also has full control to run test in different modes from the Excel sheet.
-- Allows transfer of data between test cases.
-- Has utility built in for file download, Read PDF files etc.
-- Generates Playwright's HTML Report, Allure Report & JUnit Report in HTML format for each exaction. 
-- Allure & Playwright report including snapshots and video in case of test failure.
-- Test execution logs are captured in the log file.
-- You Can execute local tests in Playwright's UI Mode, that comes with a built-in watch mode. Which helps in running and debuging of tests.
-- All the playwright related config is controlled by playwright config file.
-- Environment variables can be modified at runtime and its controlled by .env file.
-- Easy and simple integration to CI/CD tools like Jenkins.
+* Built-in support for **UI, API (SOAP & REST), and Database (MSSQL, DB2, Oracle)** automation.
+* Cross-browser execution (Chrome, Firefox, Edge, WebKit).
+* Test data and execution control via Excel sheets (choose which tests to run and in which mode).
+* Data transfer supported between test cases.
+* Utilities for **file downloads** and **PDF validation** (including masking of dynamic content).
+* Generates multiple reports:
+
+  * Playwright HTML Report
+  * Allure Report
+  * JUnit Report (XML format)
+* Allure & Playwright reports include **snapshots and video** on test failure.
+* Detailed execution logs stored in log files.
+* Run tests locally in **Playwright’s UI Mode** with watch & debug capabilities.
+* Centralized configuration in `playwright.config.ts`.
+* Runtime environment variable management via `.env`.
+* Simple integration with CI/CD tools such as **Jenkins**.
+
+---
 
 #### Supported Browsers
-1. Chrome - default browser
-2. Firefox
-3. MS Edge
-4. WebKit - web browser engine used by Safari
+1. **Chrome** (default)
+2. **Firefox**
+3. **Microsoft Edge**
+4. **WebKit** (Safari engine)
+
+---
 
 #### Run Mode Details
-| Mode | Execl Value |Description |
-| ------ | ------ | ------ |
-|Normal|Blank| 	Runs the tests sequentially|
-|Serial|serial| 	Runs the tests sequentially. On test failure, all subsequent tests are skipped|
-|Parallel|parallel| 	Runs the tests parallelly, this is ideal when tests in the scenario are independent of one another|
+| Mode     | Excel Value | Description                                                   |
+| -------- | ----------- | ------------------------------------------------------------- |
+| Normal   | *(blank)*   | Runs all tests sequentially.                                  |
+| Serial   | serial      | Runs sequentially; stops execution on first failure.          |
+| Parallel | parallel    | Runs tests in parallel; ideal for independent test scenarios. |
 
-#### Steps to use
-##### 1. Installation
+---
+## Project Structure
 
-Playwright framework requires [Node.js](https://nodejs.org/) v14+ to run.
-
-Code from github need to be [download](https://github.com/VinayKumarBM/playwright-sample-project/archive/refs/heads/master.zip) OR [cloned](https://github.com/VinayKumarBM/playwright-sample-project.git) using git command.
-
-Installing the dependencies.
-```sh
-npm ci
+```plaintext
+playwright-sample-project/
+│
+├── src/                         # Source code
+│   ├── advantage/               # UI Automation (Advantage Online Shopping)
+│   │   ├── constants/           # Constants & test data mappings
+│   │   ├── pages/               # Page Object Models
+│   │   └── steps/               # Step actions classes
+│   │
+│   ├── API/                     # API Automation
+│   │   ├── REST/                # REST API tests & helpers
+│   │   │   ├── constants/       # REST-specific constants
+│   │   │   └── steps/           # REST-specific step actions classes
+│   │   │
+│   │   └── SOAP/                # SOAP API tests & helpers
+│   │       ├── constants/       # SOAP-specific constants
+│   │       └── steps/           # SOAP-specific step actions classes
+│   │
+│   ├── database/                # Database interaction utilities
+│   │       ├── constants/       # Database-specific constants
+│   │       └── steps/           # Database-specific step actions classes
+│   ├── framework/               # Core framework utilities
+│   └── resources/               # Shared resources
+│       ├── API/                 # API payloads
+│       ├── data/                # Test data files
+│       └── pdf/                 # PDF files for validation
+│
+├── tests/                       # Test specifications (.spec.ts)
+│
+├── test-results/                # Output of test executions
+│   ├── downloads/               # Downloaded files during tests
+│   ├── failure/                 # Failure screenshots & artifacts
+│   ├── logs/                    # Execution logs
+│   ├── pdf/                     # PDF comparison results
+│   ├── report/                  # Allure / HTML reports
+│   └── results/                 # Playwright HTML results
+│
+├── .env                         # Environment variables
+├── .eslintignore                # ESLint ignore rules
+├── .eslintrc.json               # ESLint configuration
+├── .gitignore                   # Git ignore rules
+├── package.json                 # Project dependencies & scripts
+├── package-lock.json            # Lock file
+└── playwright.config.ts         # Playwright configuration
 ```
-##### 2. Test creation
-- Create Test file with extenstion .spec.ts. Eg LoginTest.spec.ts
-- In the testData excel create a sheet with name of test. Eg. LoginTest
-- Create a execution sheet and make an entry of new test case. Eg. in the Regression sheet add a row for new test LoginTest and update other columns like run, mode etc.
+
+---
+
+## Getting Started
+
+### 1. Installation
+
+* Install [Node.js](https://nodejs.org/) (v22+).
+
+* Download or clone the repository:
+
+  ```sh
+  git clone https://github.com/VinayKumarBM/playwright-sample-project.git
+  ```
+
+  OR [Download ZIP](https://github.com/VinayKumarBM/playwright-sample-project/archive/refs/heads/master.zip).
+
+* Install dependencies:
+
+  ```sh
+  npm ci
+  ```
+
+---
+
+### 2. Test Creation
+
+* Create a new test file with `.spec.ts` extension.
+  Example: `LoginTest.spec.ts`
+* In the testData Excel file, create a sheet with the same name.
+  Example: `LoginTest`
+* Update the execution sheet (e.g., `Regression`) to include the new test case, setting values for **run**, **mode**, etc.
+
+---
 
 ##### 3. Execution
 To run test suite use below command.
 ```sh
 npm run create:suite SHEET=<SheetName> && npm test
 ```
-**Note:** SheetName needs to be updated.
+**Note:** SheetName needs to be updated (Example: `Regression`).
 
 To run individual test locally use below command.
 ```sh
 set TEST_NAME=<TestFileName> && npm run local:test
 ```
-**Note:** Using set command we are setting the local TestFileName.
+**Note:** Using set command we are setting the local TestFileName (Example: `LoginTest` ).
 
-To run individual test locally in [UI Mode](https://playwright.dev/docs/test-ui-mode) use below command.
+Run an individual test in [UI Mode](https://playwright.dev/docs/test-ui-mode):
+
 ```sh
 set TEST_NAME=<TestFileName> && npm run local:test:ui
 ```
-**Note:** Using set command we are setting the local TestFileName.
 
-To change any environment configuration in .env file at run time use set command.
-Eg: To change browser to MS Edge use below command
+Change environment variables at runtime (example: set browser to Edge):
+
 ```sh
 set BROWSER=edge
 ```
-Similar command can be used to update other environment configuration
 
-To generate Allure report use below command
+Generate **Allure report**:
+
 ```sh
 npm run report
 ```
 
-##### 4. Report & Logs
-Playwright HTML report will be present inside
-```sh
-test-results/results/index.html
-```
-Execution log will be present in the log file.
-```sh
-test-results/logs/execution.log
-```
+## ⚠️ Important Note
+
+All commands shown above are written for **Windows Command Prompt**.
+
+---
+
+### 4. Reports & Logs
+
+* Playwright HTML Report:
+
+  ```sh
+  test-results/results/index.html
+  ```
+* Execution logs:
+
+  ```sh
+  test-results/logs/execution.log
+  ```
+
 ##  ##
 **:pencil: If you find my work interesting don't forget to give a Star :star: & Follow me :busts_in_silhouette:**
