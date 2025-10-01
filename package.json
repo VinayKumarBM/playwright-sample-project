@@ -55,6 +55,8 @@
     "fetch-to-curl": "0.5.2",
     "pdf.js-extract": "0.2.1",
     "pdf-lib": "1.17.1",
-    "compare-pdf-plus": "1.0.4"
+    "compare-pdf-plus": "1.0.4",
+    "resemblejs": "5.0.0",
+    "@types/resemblejs": "4.1.3"
   }
 }

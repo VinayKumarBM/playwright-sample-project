@@ -17,4 +17,7 @@ export default class CommonConstants {
     static readonly REPORT_TITLE = "Test Execution Report";
     static readonly RESULTS_PATH = "./test-results/results";
     static readonly JUNIT_RESULTS_PATH = `${CommonConstants.RESULTS_PATH}/results.xml`;
+    static readonly IMAGE_DIFF_PATH = "./test-results/image/diffs";
+    static readonly BASELINE_IMAGE_PATH = "./src/resources/baselineImages";
+    static readonly ACTUAL_IMAGE_PATH = "./test-results/image/actual";
 }
