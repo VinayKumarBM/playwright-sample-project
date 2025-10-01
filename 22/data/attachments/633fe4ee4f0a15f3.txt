@@ -1,3 +1,0 @@
-Response body: {
-  "id": 11
-}
