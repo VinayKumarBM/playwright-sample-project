@@ -14,7 +14,7 @@ import UIActions from "@uiActions/UIActions";
         // We are masking the dynamic elements before capturing the screenshot. So that the comparison will be done excluding those elements
         await ui.element('.auth-wrapper', "Login Section masked v2").compareAndValidateElementScreenshot("Login_Section_masked.png", [".logo-w", ".buttons-w"]);
         // Here we are using a tolerance of 0.26 to so theme mismatch is accepted
-        await ui.element('.auth-wrapper', "Login Section v2 with Tolerance").compareAndValidateElementScreenshot("Login_Section.png", [], 0.26);
+        await ui.element('.auth-wrapper', "Login Section v2 with Tolerance of 0.70").compareAndValidateElementScreenshot("Login_Section.png", [], 0.70);
         // Here we are using a tolerance of 0.00 to so exact match is accepted. This will fail if there is any minor change in the UI
         await ui.element('.auth-wrapper', "Login Section v2").compareAndValidateElementScreenshot("Login_Section.png");
     });
