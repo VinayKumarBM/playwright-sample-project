@@ -1,1 +1,0 @@
-Request:  curl 'https://fakestoreapi.com/users' -X GET -H "Content-Type: application/json" -H "Accept: application/json"

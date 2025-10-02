@@ -1,1 +1,0 @@
-Request:  curl 'https://fakestoreapi.com/users/11' -X DELETE -H "Content-Type: application/json" -H "Accept: application/json"
