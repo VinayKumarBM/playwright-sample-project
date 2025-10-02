@@ -11,7 +11,7 @@ export default class ImageComparator {
      * @param baselineImageName baseline image name 
      * @param actualImageDir Path to the actual image directory 
      * @param actualImageName actual image name
-     * @param misMatchTolerance tolerance level for image comparison (range 0 to 1), default is 0.00 
+     * @param misMatchTolerance tolerance level for image comparison in percentage (0.00 for exact match, 0.25 for 0.25% mismatch allowed etc., default is 0.00)
      * @returns 
      */
     public static async compareImages(baselineImagedDir: string, baselineImageName: string, actualImageDir: string, actualImageName: string, misMatchTolerance = 0.00): Promise<{ isSame: boolean; misMatchPercentage: number }> {

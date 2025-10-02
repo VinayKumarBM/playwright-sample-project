@@ -6,7 +6,9 @@ import UIActions from "@uiActions/UIActions";
         Allure.attachDetails(`Capture the Screenshot and compare with the baseline image`, null);
         const ui = new UIActions(page);
         // All the baseline images are captured and stored in src/resources/baselineImages from below URL
-        // await pw.goto("https://demo.applitools.com/", "Applitools Demo");
+        await ui.goto("https://demo.applitools.com/", "Applitools Demo");
+        await ui.element('.auth-wrapper', "Login Section").compareAndValidateElementScreenshot("Login_Section.png");
+        await ui.element('.auth-wrapper', "Login Section masked").compareAndValidateElementScreenshot("Login_Section_masked.png", [".logo-w", ".buttons-w"]);
         // All the tests are run against the below URL
         await ui.goto("https://demo.applitools.com/index_v2.html", "Applitools Demo v2");
         // We are masking the dynamic elements before capturing the screenshot. So that the comparison will be done excluding those elements

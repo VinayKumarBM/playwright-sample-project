@@ -334,7 +334,7 @@ export default class UIElementActions {
    * If differences are detected, a diff image highlighting the changes is generated and stored in ./test-results/image/diffs.
    * @param fileName name of the file in baseline folder to compare
    * @param maskSelectors selectors to mask on the screenshot
-   * @param misMatchTolerance tolerance level for image comparison (range 0 to 1), default is 0.00
+   * @param misMatchTolerance tolerance level for image comparison in percentage, default is 0.00
    */
   public async compareAndValidateElementScreenshot(fileName: string, maskSelectors: string[] = [], misMatchTolerance = 0.00) {
     const actualImageName = fileName.replace('.png', `_${new Date().getDate()}.png`);
